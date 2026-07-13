@@ -1,9 +1,14 @@
 """Shared pytest fixtures for the JSONPlaceholder API test suite."""
 
+import os
+
 import pytest
 import requests
 
-BASE_URL = "https://jsonplaceholder.typicode.com"
+# Base URL is configurable via env var so the same suite can target
+# other environments (e.g. a local mock or staging), defaulting to the
+# public JSONPlaceholder instance.
+BASE_URL = os.getenv("API_BASE_URL", "https://jsonplaceholder.typicode.com")
 
 
 class ApiClient:
